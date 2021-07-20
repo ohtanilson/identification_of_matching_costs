@@ -218,8 +218,8 @@ function score_b_with(beta::Vector{Float64},
         #balance number of unmatched and matched
         #sampled_ineqs_IR = sample(ineqs_IR, length(comper))
         #res = sum(ineqs.>0) + sum(sampled_ineqs_IR.>0) #+ sum(comper_unmatched.<0)
-        global arbitrary_high_IR_violation
-        res = sum(ineqs.>0) + sum(ineqs_IR.>0).*arbitrary_high_IR_violation
+        global importance_weight_lambda
+        res = sum(ineqs.>0) + sum(ineqs_IR.>0).*importance_weight_lambda
         #res = sum(ineqs.>0) + sum(comper_unmatched.<0)
     end
     return res
@@ -270,8 +270,8 @@ function score_b(beta::Vector{Float64},
         #balance number of unmatched and matched
         #sampled_ineqs_IR = sample(ineqs_IR, length(comper))
         #res = sum(ineqs.>0) + sum(sampled_ineqs_IR.>0) #+ sum(comper_unmatched.<0)
-        global arbitrary_high_IR_violation
-        res = sum(ineqs.>0) + sum(ineqs_IR.>0).*arbitrary_high_IR_violation
+        global importance_weight_lambda
+        res = sum(ineqs.>0) + sum(ineqs_IR.>0).*importance_weight_lambda
         #res = sum(ineqs.>0) + sum(comper_unmatched.<0)
     end
     return res
@@ -545,8 +545,8 @@ function score_b_with_non(beta::Vector{Float64},
                      beta[2]*data_only_matched.Cb.*data_only_matched.Ct .- data_only_matched.tarprice
     	  end
         #balance number of unmatched and matched
-        global arbitrary_high_IR_violation
-        res = sum(ineqs.>0) + sum(ineqs_IR.>0).*arbitrary_high_IR_violation
+        global importance_weight_lambda
+        res = sum(ineqs.>0) + sum(ineqs_IR.>0).*importance_weight_lambda
         #res = sum(ineqs.>0) + sum(comper_unmatched.<0)
     end
     return res
@@ -595,8 +595,8 @@ function score_b_non(beta::Vector{Float64},
                      beta[2]*data_only_matched.Cb.*data_only_matched.Ct #.- data_only_matched.tarprice
     	  end
         #balance number of unmatched and matched
-        global arbitrary_high_IR_violation
-        res = sum(ineqs.>0) + sum(ineqs_IR.>0).*arbitrary_high_IR_violation
+        global importance_weight_lambda
+        res = sum(ineqs.>0) + sum(ineqs_IR.>0).*importance_weight_lambda
         #res = sum(ineqs.>0) + sum(comper_unmatched.<0)
     end
     return res
@@ -1220,7 +1220,7 @@ function estimate_two_param_all_different_penalty(;
                                        0.25 0.25 1],
                         num_agents_list = [10, 20, 30, 50, 100],
                         true_β_list = [1.0, 0.0, -1.0, -2.0, -3.0])
-    global arbitrary_high_IR_violation
+    global importance_weight_lambda
     #------------------------------#
     # without a dummy
     #------------------------------#
@@ -1232,16 +1232,16 @@ function estimate_two_param_all_different_penalty(;
     # include("compute_two_param.jl")
     # # read results
     # for k = 1:size(model_list)[1]
-    # 	res_mean_list_beta1[k,:,:] = round.(readdlm("julia_results/res_mean_list_model_$(k)_two_param_beta1_$(dummy_index)_$(IR_index)_penalty_$(arbitrary_high_IR_violation).txt",',',Float64), digits =2)
-    # 	res_bias_list_beta1[k,:,:] = round.(readdlm("julia_results/res_bias_list_model_$(k)_two_param_beta1_$(dummy_index)_$(IR_index)_penalty_$(arbitrary_high_IR_violation).txt",',',Float64) , digits =2)
-    # 	res_sqrt_list_beta1[k,:,:] = round.(readdlm("julia_results/res_sqrt_list_model_$(k)_two_param_beta1_$(dummy_index)_$(IR_index)_penalty_$(arbitrary_high_IR_violation).txt",',',Float64), digits =2)
-    # 	res_mean_list_beta2[k,:,:] = round.(readdlm("julia_results/res_mean_list_model_$(k)_two_param_beta2_$(dummy_index)_$(IR_index)_penalty_$(arbitrary_high_IR_violation).txt",',',Float64), digits =2)
-    # 	res_bias_list_beta2[k,:,:] = round.(readdlm("julia_results/res_bias_list_model_$(k)_two_param_beta2_$(dummy_index)_$(IR_index)_penalty_$(arbitrary_high_IR_violation).txt",',',Float64) , digits =2)
-    # 	res_sqrt_list_beta2[k,:,:] = round.(readdlm("julia_results/res_sqrt_list_model_$(k)_two_param_beta2_$(dummy_index)_$(IR_index)_penalty_$(arbitrary_high_IR_violation).txt",',',Float64), digits =2)
-    # 	mean_matched_num_list[k,:,:] = round.(readdlm("julia_results/mean_matched_num_list_model_$(k)_two_param_$(dummy_index)_$(IR_index)_penalty_$(arbitrary_high_IR_violation).txt",',',Float64), digits =2)
-    # 	mean_unmatched_num_list[k,:,:] = round.(readdlm("julia_results/mean_unmatched_num_list_model_$(k)_two_param_$(dummy_index)_$(IR_index)_penalty_$(arbitrary_high_IR_violation).txt",',',Float64), digits =2)
+    # 	res_mean_list_beta1[k,:,:] = round.(readdlm("julia_results/res_mean_list_model_$(k)_two_param_beta1_$(dummy_index)_$(IR_index)_penalty_$(importance_weight_lambda).txt",',',Float64), digits =2)
+    # 	res_bias_list_beta1[k,:,:] = round.(readdlm("julia_results/res_bias_list_model_$(k)_two_param_beta1_$(dummy_index)_$(IR_index)_penalty_$(importance_weight_lambda).txt",',',Float64) , digits =2)
+    # 	res_sqrt_list_beta1[k,:,:] = round.(readdlm("julia_results/res_sqrt_list_model_$(k)_two_param_beta1_$(dummy_index)_$(IR_index)_penalty_$(importance_weight_lambda).txt",',',Float64), digits =2)
+    # 	res_mean_list_beta2[k,:,:] = round.(readdlm("julia_results/res_mean_list_model_$(k)_two_param_beta2_$(dummy_index)_$(IR_index)_penalty_$(importance_weight_lambda).txt",',',Float64), digits =2)
+    # 	res_bias_list_beta2[k,:,:] = round.(readdlm("julia_results/res_bias_list_model_$(k)_two_param_beta2_$(dummy_index)_$(IR_index)_penalty_$(importance_weight_lambda).txt",',',Float64) , digits =2)
+    # 	res_sqrt_list_beta2[k,:,:] = round.(readdlm("julia_results/res_sqrt_list_model_$(k)_two_param_beta2_$(dummy_index)_$(IR_index)_penalty_$(importance_weight_lambda).txt",',',Float64), digits =2)
+    # 	mean_matched_num_list[k,:,:] = round.(readdlm("julia_results/mean_matched_num_list_model_$(k)_two_param_$(dummy_index)_$(IR_index)_penalty_$(importance_weight_lambda).txt",',',Float64), digits =2)
+    # 	mean_unmatched_num_list[k,:,:] = round.(readdlm("julia_results/mean_unmatched_num_list_model_$(k)_two_param_$(dummy_index)_$(IR_index)_penalty_$(importance_weight_lambda).txt",',',Float64), digits =2)
     # end
-    # write_table_two_param("julia_tables/estimation_results_single_market_two_param_beta_$(dummy_index)_$(IR_index)_penalty_$(arbitrary_high_IR_violation).tex",
+    # write_table_two_param("julia_tables/estimation_results_single_market_two_param_beta_$(dummy_index)_$(IR_index)_penalty_$(importance_weight_lambda).tex",
     # 	                 num_agents_list,
     # 					 true_β_list,
     # 					 res_mean_list_beta1,
@@ -1261,16 +1261,16 @@ function estimate_two_param_all_different_penalty(;
     # include("compute_two_param.jl")
     # # read results
     # for k = 1:size(model_list)[1]
-    # 	res_mean_list_beta1[k,:,:] = round.(readdlm("julia_results/res_mean_list_model_$(k)_two_param_beta1_$(dummy_index)_$(IR_index)_penalty_$(arbitrary_high_IR_violation).txt",',',Float64), digits =2)
-    # 	res_bias_list_beta1[k,:,:] = round.(readdlm("julia_results/res_bias_list_model_$(k)_two_param_beta1_$(dummy_index)_$(IR_index)_penalty_$(arbitrary_high_IR_violation).txt",',',Float64) , digits =2)
-    # 	res_sqrt_list_beta1[k,:,:] = round.(readdlm("julia_results/res_sqrt_list_model_$(k)_two_param_beta1_$(dummy_index)_$(IR_index)_penalty_$(arbitrary_high_IR_violation).txt",',',Float64), digits =2)
-    # 	res_mean_list_beta2[k,:,:] = round.(readdlm("julia_results/res_mean_list_model_$(k)_two_param_beta2_$(dummy_index)_$(IR_index)_penalty_$(arbitrary_high_IR_violation).txt",',',Float64), digits =2)
-    # 	res_bias_list_beta2[k,:,:] = round.(readdlm("julia_results/res_bias_list_model_$(k)_two_param_beta2_$(dummy_index)_$(IR_index)_penalty_$(arbitrary_high_IR_violation).txt",',',Float64) , digits =2)
-    # 	res_sqrt_list_beta2[k,:,:] = round.(readdlm("julia_results/res_sqrt_list_model_$(k)_two_param_beta2_$(dummy_index)_$(IR_index)_penalty_$(arbitrary_high_IR_violation).txt",',',Float64), digits =2)
-    # 	mean_matched_num_list[k,:,:] = round.(readdlm("julia_results/mean_matched_num_list_model_$(k)_two_param_$(dummy_index)_$(IR_index)_penalty_$(arbitrary_high_IR_violation).txt",',',Float64), digits =2)
-    # 	mean_unmatched_num_list[k,:,:] = round.(readdlm("julia_results/mean_unmatched_num_list_model_$(k)_two_param_$(dummy_index)_$(IR_index)_penalty_$(arbitrary_high_IR_violation).txt",',',Float64), digits =2)
+    # 	res_mean_list_beta1[k,:,:] = round.(readdlm("julia_results/res_mean_list_model_$(k)_two_param_beta1_$(dummy_index)_$(IR_index)_penalty_$(importance_weight_lambda).txt",',',Float64), digits =2)
+    # 	res_bias_list_beta1[k,:,:] = round.(readdlm("julia_results/res_bias_list_model_$(k)_two_param_beta1_$(dummy_index)_$(IR_index)_penalty_$(importance_weight_lambda).txt",',',Float64) , digits =2)
+    # 	res_sqrt_list_beta1[k,:,:] = round.(readdlm("julia_results/res_sqrt_list_model_$(k)_two_param_beta1_$(dummy_index)_$(IR_index)_penalty_$(importance_weight_lambda).txt",',',Float64), digits =2)
+    # 	res_mean_list_beta2[k,:,:] = round.(readdlm("julia_results/res_mean_list_model_$(k)_two_param_beta2_$(dummy_index)_$(IR_index)_penalty_$(importance_weight_lambda).txt",',',Float64), digits =2)
+    # 	res_bias_list_beta2[k,:,:] = round.(readdlm("julia_results/res_bias_list_model_$(k)_two_param_beta2_$(dummy_index)_$(IR_index)_penalty_$(importance_weight_lambda).txt",',',Float64) , digits =2)
+    # 	res_sqrt_list_beta2[k,:,:] = round.(readdlm("julia_results/res_sqrt_list_model_$(k)_two_param_beta2_$(dummy_index)_$(IR_index)_penalty_$(importance_weight_lambda).txt",',',Float64), digits =2)
+    # 	mean_matched_num_list[k,:,:] = round.(readdlm("julia_results/mean_matched_num_list_model_$(k)_two_param_$(dummy_index)_$(IR_index)_penalty_$(importance_weight_lambda).txt",',',Float64), digits =2)
+    # 	mean_unmatched_num_list[k,:,:] = round.(readdlm("julia_results/mean_unmatched_num_list_model_$(k)_two_param_$(dummy_index)_$(IR_index)_penalty_$(importance_weight_lambda).txt",',',Float64), digits =2)
     # end
-    # write_table_two_param("julia_tables/estimation_results_single_market_two_param_beta_$(dummy_index)_$(IR_index)_penalty_$(arbitrary_high_IR_violation).tex",
+    # write_table_two_param("julia_tables/estimation_results_single_market_two_param_beta_$(dummy_index)_$(IR_index)_penalty_$(importance_weight_lambda).tex",
     # 	                 num_agents_list,
     # 					 true_β_list,
     # 					 res_mean_list_beta1,
@@ -1293,16 +1293,16 @@ function estimate_two_param_all_different_penalty(;
     # include("compute_two_param.jl")
     # # read results
     # for k = 1:size(model_list)[1]
-    # 	res_mean_list_beta1[k,:,:] = round.(readdlm("julia_results/res_mean_list_model_$(k)_two_param_beta1_$(dummy_index)_$(IR_index)_penalty_$(arbitrary_high_IR_violation).txt",',',Float64), digits =2)
-    # 	res_bias_list_beta1[k,:,:] = round.(readdlm("julia_results/res_bias_list_model_$(k)_two_param_beta1_$(dummy_index)_$(IR_index)_penalty_$(arbitrary_high_IR_violation).txt",',',Float64) , digits =2)
-    # 	res_sqrt_list_beta1[k,:,:] = round.(readdlm("julia_results/res_sqrt_list_model_$(k)_two_param_beta1_$(dummy_index)_$(IR_index)_penalty_$(arbitrary_high_IR_violation).txt",',',Float64), digits =2)
-    # 	res_mean_list_beta2[k,:,:] = round.(readdlm("julia_results/res_mean_list_model_$(k)_two_param_beta2_$(dummy_index)_$(IR_index)_penalty_$(arbitrary_high_IR_violation).txt",',',Float64), digits =2)
-    # 	res_bias_list_beta2[k,:,:] = round.(readdlm("julia_results/res_bias_list_model_$(k)_two_param_beta2_$(dummy_index)_$(IR_index)_penalty_$(arbitrary_high_IR_violation).txt",',',Float64) , digits =2)
-    # 	res_sqrt_list_beta2[k,:,:] = round.(readdlm("julia_results/res_sqrt_list_model_$(k)_two_param_beta2_$(dummy_index)_$(IR_index)_penalty_$(arbitrary_high_IR_violation).txt",',',Float64), digits =2)
-    # 	mean_matched_num_list[k,:,:] = round.(readdlm("julia_results/mean_matched_num_list_model_$(k)_two_param_$(dummy_index)_$(IR_index)_penalty_$(arbitrary_high_IR_violation).txt",',',Float64), digits =2)
-    # 	mean_unmatched_num_list[k,:,:] = round.(readdlm("julia_results/mean_unmatched_num_list_model_$(k)_two_param_$(dummy_index)_$(IR_index)_penalty_$(arbitrary_high_IR_violation).txt",',',Float64), digits =2)
+    # 	res_mean_list_beta1[k,:,:] = round.(readdlm("julia_results/res_mean_list_model_$(k)_two_param_beta1_$(dummy_index)_$(IR_index)_penalty_$(importance_weight_lambda).txt",',',Float64), digits =2)
+    # 	res_bias_list_beta1[k,:,:] = round.(readdlm("julia_results/res_bias_list_model_$(k)_two_param_beta1_$(dummy_index)_$(IR_index)_penalty_$(importance_weight_lambda).txt",',',Float64) , digits =2)
+    # 	res_sqrt_list_beta1[k,:,:] = round.(readdlm("julia_results/res_sqrt_list_model_$(k)_two_param_beta1_$(dummy_index)_$(IR_index)_penalty_$(importance_weight_lambda).txt",',',Float64), digits =2)
+    # 	res_mean_list_beta2[k,:,:] = round.(readdlm("julia_results/res_mean_list_model_$(k)_two_param_beta2_$(dummy_index)_$(IR_index)_penalty_$(importance_weight_lambda).txt",',',Float64), digits =2)
+    # 	res_bias_list_beta2[k,:,:] = round.(readdlm("julia_results/res_bias_list_model_$(k)_two_param_beta2_$(dummy_index)_$(IR_index)_penalty_$(importance_weight_lambda).txt",',',Float64) , digits =2)
+    # 	res_sqrt_list_beta2[k,:,:] = round.(readdlm("julia_results/res_sqrt_list_model_$(k)_two_param_beta2_$(dummy_index)_$(IR_index)_penalty_$(importance_weight_lambda).txt",',',Float64), digits =2)
+    # 	mean_matched_num_list[k,:,:] = round.(readdlm("julia_results/mean_matched_num_list_model_$(k)_two_param_$(dummy_index)_$(IR_index)_penalty_$(importance_weight_lambda).txt",',',Float64), digits =2)
+    # 	mean_unmatched_num_list[k,:,:] = round.(readdlm("julia_results/mean_unmatched_num_list_model_$(k)_two_param_$(dummy_index)_$(IR_index)_penalty_$(importance_weight_lambda).txt",',',Float64), digits =2)
     # end
-    # write_table_two_param("julia_tables/estimation_results_single_market_two_param_beta_$(dummy_index)_$(IR_index)_penalty_$(arbitrary_high_IR_violation).tex",
+    # write_table_two_param("julia_tables/estimation_results_single_market_two_param_beta_$(dummy_index)_$(IR_index)_penalty_$(importance_weight_lambda).tex",
     # 	                 num_agents_list,
     # 					 true_β_list,
     # 					 res_mean_list_beta1,
@@ -1322,16 +1322,16 @@ function estimate_two_param_all_different_penalty(;
     include("compute_two_param.jl")
     # read results
     for k = 1:size(model_list)[1]
-    	res_mean_list_beta1[k,:,:] = round.(readdlm("julia_results/res_mean_list_model_$(k)_two_param_beta1_$(dummy_index)_$(IR_index)_penalty_$(arbitrary_high_IR_violation).txt",',',Float64), digits =2)
-    	res_bias_list_beta1[k,:,:] = round.(readdlm("julia_results/res_bias_list_model_$(k)_two_param_beta1_$(dummy_index)_$(IR_index)_penalty_$(arbitrary_high_IR_violation).txt",',',Float64) , digits =2)
-    	res_sqrt_list_beta1[k,:,:] = round.(readdlm("julia_results/res_sqrt_list_model_$(k)_two_param_beta1_$(dummy_index)_$(IR_index)_penalty_$(arbitrary_high_IR_violation).txt",',',Float64), digits =2)
-    	res_mean_list_beta2[k,:,:] = round.(readdlm("julia_results/res_mean_list_model_$(k)_two_param_beta2_$(dummy_index)_$(IR_index)_penalty_$(arbitrary_high_IR_violation).txt",',',Float64), digits =2)
-    	res_bias_list_beta2[k,:,:] = round.(readdlm("julia_results/res_bias_list_model_$(k)_two_param_beta2_$(dummy_index)_$(IR_index)_penalty_$(arbitrary_high_IR_violation).txt",',',Float64) , digits =2)
-    	res_sqrt_list_beta2[k,:,:] = round.(readdlm("julia_results/res_sqrt_list_model_$(k)_two_param_beta2_$(dummy_index)_$(IR_index)_penalty_$(arbitrary_high_IR_violation).txt",',',Float64), digits =2)
-    	mean_matched_num_list[k,:,:] = round.(readdlm("julia_results/mean_matched_num_list_model_$(k)_two_param_$(dummy_index)_$(IR_index)_penalty_$(arbitrary_high_IR_violation).txt",',',Float64), digits =2)
-    	mean_unmatched_num_list[k,:,:] = round.(readdlm("julia_results/mean_unmatched_num_list_model_$(k)_two_param_$(dummy_index)_$(IR_index)_penalty_$(arbitrary_high_IR_violation).txt",',',Float64), digits =2)
+    	res_mean_list_beta1[k,:,:] = round.(readdlm("julia_results/res_mean_list_model_$(k)_two_param_beta1_$(dummy_index)_$(IR_index)_penalty_$(importance_weight_lambda).txt",',',Float64), digits =2)
+    	res_bias_list_beta1[k,:,:] = round.(readdlm("julia_results/res_bias_list_model_$(k)_two_param_beta1_$(dummy_index)_$(IR_index)_penalty_$(importance_weight_lambda).txt",',',Float64) , digits =2)
+    	res_sqrt_list_beta1[k,:,:] = round.(readdlm("julia_results/res_sqrt_list_model_$(k)_two_param_beta1_$(dummy_index)_$(IR_index)_penalty_$(importance_weight_lambda).txt",',',Float64), digits =2)
+    	res_mean_list_beta2[k,:,:] = round.(readdlm("julia_results/res_mean_list_model_$(k)_two_param_beta2_$(dummy_index)_$(IR_index)_penalty_$(importance_weight_lambda).txt",',',Float64), digits =2)
+    	res_bias_list_beta2[k,:,:] = round.(readdlm("julia_results/res_bias_list_model_$(k)_two_param_beta2_$(dummy_index)_$(IR_index)_penalty_$(importance_weight_lambda).txt",',',Float64) , digits =2)
+    	res_sqrt_list_beta2[k,:,:] = round.(readdlm("julia_results/res_sqrt_list_model_$(k)_two_param_beta2_$(dummy_index)_$(IR_index)_penalty_$(importance_weight_lambda).txt",',',Float64), digits =2)
+    	mean_matched_num_list[k,:,:] = round.(readdlm("julia_results/mean_matched_num_list_model_$(k)_two_param_$(dummy_index)_$(IR_index)_penalty_$(importance_weight_lambda).txt",',',Float64), digits =2)
+    	mean_unmatched_num_list[k,:,:] = round.(readdlm("julia_results/mean_unmatched_num_list_model_$(k)_two_param_$(dummy_index)_$(IR_index)_penalty_$(importance_weight_lambda).txt",',',Float64), digits =2)
     end
-    write_table_two_param("julia_tables/estimation_results_single_market_two_param_beta_$(dummy_index)_$(IR_index)_penalty_$(arbitrary_high_IR_violation).tex",
+    write_table_two_param("julia_tables/estimation_results_single_market_two_param_beta_$(dummy_index)_$(IR_index)_penalty_$(importance_weight_lambda).tex",
     	                 num_agents_list,
     					 true_β_list,
     					 res_mean_list_beta1,

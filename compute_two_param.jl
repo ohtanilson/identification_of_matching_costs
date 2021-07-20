@@ -44,28 +44,28 @@ JULIA_NUM_THREADS=8
 	end
 	if different_penalty_level_check == true
 		for k in 1:size(model_list)[1]
-			open("julia_results/res_mean_list_model_$(k)_two_param_beta1_$(dummy_index)_$(IR_index)_penalty_$(arbitrary_high_IR_violation).txt", "w") do io
+			open("julia_results/res_mean_list_model_$(k)_two_param_beta1_$(dummy_index)_$(IR_index)_penalty_$(importance_weight_lambda).txt", "w") do io
 				DelimitedFiles.writedlm(io, res_mean_list_beta1[k,:,:],",")
 			end
-			open("julia_results/res_bias_list_model_$(k)_two_param_beta1_$(dummy_index)_$(IR_index)_penalty_$(arbitrary_high_IR_violation).txt", "w") do io
+			open("julia_results/res_bias_list_model_$(k)_two_param_beta1_$(dummy_index)_$(IR_index)_penalty_$(importance_weight_lambda).txt", "w") do io
 				DelimitedFiles.writedlm(io, res_bias_list_beta1[k,:,:],",")
 			end
-			open("julia_results/res_sqrt_list_model_$(k)_two_param_beta1_$(dummy_index)_$(IR_index)_penalty_$(arbitrary_high_IR_violation).txt", "w") do io
+			open("julia_results/res_sqrt_list_model_$(k)_two_param_beta1_$(dummy_index)_$(IR_index)_penalty_$(importance_weight_lambda).txt", "w") do io
 				DelimitedFiles.writedlm(io, res_sqrt_list_beta1[k,:,:],",")
 			end
-			open("julia_results/res_mean_list_model_$(k)_two_param_beta2_$(dummy_index)_$(IR_index)_penalty_$(arbitrary_high_IR_violation).txt", "w") do io
+			open("julia_results/res_mean_list_model_$(k)_two_param_beta2_$(dummy_index)_$(IR_index)_penalty_$(importance_weight_lambda).txt", "w") do io
 				DelimitedFiles.writedlm(io, res_mean_list_beta2[k,:,:],",")
 			end
-			open("julia_results/res_bias_list_model_$(k)_two_param_beta2_$(dummy_index)_$(IR_index)_penalty_$(arbitrary_high_IR_violation).txt", "w") do io
+			open("julia_results/res_bias_list_model_$(k)_two_param_beta2_$(dummy_index)_$(IR_index)_penalty_$(importance_weight_lambda).txt", "w") do io
 				DelimitedFiles.writedlm(io, res_bias_list_beta2[k,:,:],",")
 			end
-			open("julia_results/res_sqrt_list_model_$(k)_two_param_beta2_$(dummy_index)_$(IR_index)_penalty_$(arbitrary_high_IR_violation).txt", "w") do io
+			open("julia_results/res_sqrt_list_model_$(k)_two_param_beta2_$(dummy_index)_$(IR_index)_penalty_$(importance_weight_lambda).txt", "w") do io
 				DelimitedFiles.writedlm(io, res_sqrt_list_beta2[k,:,:],",")
 			end
-			open("julia_results/mean_matched_num_list_model_$(k)_two_param_$(dummy_index)_$(IR_index)_penalty_$(arbitrary_high_IR_violation).txt", "w") do io
+			open("julia_results/mean_matched_num_list_model_$(k)_two_param_$(dummy_index)_$(IR_index)_penalty_$(importance_weight_lambda).txt", "w") do io
 				DelimitedFiles.writedlm(io, mean_matched_num_list[k,:,:],",")
 			end
-			open("julia_results/mean_unmatched_num_list_model_$(k)_two_param_$(dummy_index)_$(IR_index)_penalty_$(arbitrary_high_IR_violation).txt", "w") do io
+			open("julia_results/mean_unmatched_num_list_model_$(k)_two_param_$(dummy_index)_$(IR_index)_penalty_$(importance_weight_lambda).txt", "w") do io
 				DelimitedFiles.writedlm(io, mean_unmatched_num_list[k,:,:],",")
 			end
 		end
