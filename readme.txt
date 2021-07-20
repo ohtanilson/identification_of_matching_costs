@@ -1,4 +1,4 @@
-Written by Suguru Otani, July 19, 2021
+Written by Suguru Otani, July 18, 2021
 
 "A Note On The Identification Power Improvement and Identification of Matching Costs
 in Transferable Utility Matching Games"
@@ -8,7 +8,7 @@ The repository is prepared for replications of computational results in the pape
 After setting the root path to /identification_of_matching_costs, 
 run main.jl which contains all computational procedures.
 It will take about a day for all computations and 
-automatically update results restored in corresponding folders. 
+automatically update results restored in corresponding below folders. 
 
 If you want to skip some parts, please switch 
   want_to_run_all_plots = true
