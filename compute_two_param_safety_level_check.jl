@@ -82,15 +82,15 @@ for k = 1:size(model_list)[1]
   mean_unmatched_num_list[k,:,:] = round.(readdlm("julia_results/mean_unmatched_num_list_model_$(k)_two_param_$(dummy_index)_$(IR_index)_safety_level_check.txt",',',Float64), digits =2)
 end
 
-bias_list = vcat("","U","Bias",res_bias_list_beta1[1,:,1],
+global bias_list = vcat("","U","Bias",res_bias_list_beta1[1,:,1],
                  "", res_bias_list_beta2[1,:,1])
 for tt = 2:size(res_bias_list_beta1)[3]
 	temp = vcat("","U","Bias",res_bias_list_beta1[1,:,tt],
 	"", res_bias_list_beta2[1,:,tt])
-	bias_list = hcat(bias_list, temp)
+	global bias_list = hcat(bias_list, temp)
 end
 
-RMSE_list = vcat("","","RMSE","($(res_sqrt_list_beta1[1,1,1]))", "($(res_sqrt_list_beta1[1,2,1]))",
+global RMSE_list = vcat("","","RMSE","($(res_sqrt_list_beta1[1,1,1]))", "($(res_sqrt_list_beta1[1,2,1]))",
 	 "($(res_sqrt_list_beta1[1,3,1]))", "($(res_sqrt_list_beta1[1,4,1]))", "($(res_sqrt_list_beta1[1,5,1]))",
 	 "",
 	 "($(res_sqrt_list_beta2[1,1,1]))", "($(res_sqrt_list_beta2[1,2,1]))",
@@ -101,7 +101,7 @@ for tt = 2:size(res_sqrt_list_beta1)[3]
 		 "",
 		 "($(res_sqrt_list_beta2[1,1,tt]))", "($(res_sqrt_list_beta2[1,2,tt]))",
 		 "($(res_sqrt_list_beta2[1,3,tt]))", "($(res_sqrt_list_beta2[1,4,tt]))", "($(res_sqrt_list_beta2[1,5,tt]))")
-	RMSE_list = hcat(RMSE_list, temp)
+	global RMSE_list = hcat(RMSE_list, temp)
 end
 
 LaTeXTabulars.latex_tabular("julia_tables/estimation_results_single_market_two_param_beta_$(dummy_index)_$(IR_index)_safety_level_check_model_T.tex",

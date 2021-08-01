@@ -1220,7 +1220,7 @@ function estimate_two_param_all_different_penalty(;
                                        0.25 0.25 1],
                         num_agents_list = [10, 20, 30, 50, 100],
                         true_β_list = [1.0, 0.0, -1.0, -2.0, -3.0])
-    global importance_weight_lambda
+    #global importance_weight_lambda
     #------------------------------#
     # without a dummy
     #------------------------------#
@@ -1315,10 +1315,14 @@ function estimate_two_param_all_different_penalty(;
     # 					 mean_unmatched_num_list)
 
     # with IR
-    global temp_dummy_included = true
-    global temp_IR_condition_included = true
-    global dummy_index = "with_dummy"
-    global IR_index = "with_IR"
+    # global temp_dummy_included = true
+    # global temp_IR_condition_included = true
+    # global dummy_index = "with_dummy"
+    # global IR_index = "with_IR"
+    temp_dummy_included = true
+    temp_IR_condition_included = true
+    dummy_index = "with_dummy"
+    IR_index = "with_IR"
     include("compute_two_param.jl")
     # read results
     for k = 1:size(model_list)[1]
