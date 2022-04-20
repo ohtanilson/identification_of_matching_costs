@@ -1,5 +1,5 @@
 Written by Suguru Otani, July 19, 2021
-Title pdated April 04, 2020
+Title updated April 04, 2020
 
 "Individual Rationality Conditions Identify Matching Costs in Transferable Utility Matching Games"
 
