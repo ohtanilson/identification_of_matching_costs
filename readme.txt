@@ -1,7 +1,7 @@
 Written by Suguru Otani, July 19, 2021
+Title pdated April 04, 2020
 
-"A Note On The Identification Power Improvement and Identification of Matching Costs
-in Transferable Utility Matching Games"
+"Individual Rationality Conditions Identify Matching Costs in Transferable Utility Matching Games"
 
 The repository is prepared for replications of computational results in the paper.
 
