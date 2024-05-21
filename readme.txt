@@ -1,7 +1,8 @@
+"Individual Rationality Conditions of Identifying Matching Costs in Transferable Utility Matching Games. (2024) Economics Bulletin"
+
+Finalized by Suguru Otani, May 22, 2024
 Written by Suguru Otani, July 19, 2021
 Title updated April 04, 2020
-
-"Individual Rationality Conditions Identify Matching Costs in Transferable Utility Matching Games"
 
 The repository is prepared for replications of computational results in the paper.
 
